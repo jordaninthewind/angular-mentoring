@@ -1,0 +1,19 @@
+{
+  "name": "module-3",
+  "version": "1.0.0",
+  "description": "Third module in the EPAM Systems Node.js training program 12/2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jordaninthewind/node_workout_3.git"
+  },
+  "author": "Jordan Kline",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jordaninthewind/node_workout_3/issues"
+  },
+  "homepage": "https://github.com/jordaninthewind/node_workout_3#readme"
+}
