@@ -2,18 +2,18 @@ header {
   background-color: rgb(47, 51, 63);
   color: white;
   display: flex;
-  height: 5em;
+  height: 4em;
   width: 100vw;
-  div {
-    margin-top: auto;
-    margin-bottom: auto;
+  .nav-container {
+    margin: auto;
     width: 100%;
-    &.nav-logo {
+    .nav-logo {
+      float: left;
       font-weight: bold;
     }
-    &.nav-links {
-      text-align: right;
-      &span {
+    .nav-links {
+      float: right;
+      span {
         &:before {
           content: "x";
         }

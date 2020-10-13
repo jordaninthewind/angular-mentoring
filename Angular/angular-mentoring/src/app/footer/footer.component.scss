@@ -1,16 +1,14 @@
 footer {
   background-color: rgb(47, 51, 63);
+  bottom: 0;
   color: white;
   display: flex;
   font-size: 0.75em;
   height: 5em;
-  width: 100vw;
-  position: fixed;
-  bottom: 0;
   left: 0;
+  position: fixed;
+  width: 100vw;
   div {
-    margin: auto;
-    max-width: 850px;
     text-align: right;
     width: 100%;
   }

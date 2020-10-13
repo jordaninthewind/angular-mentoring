@@ -1,9 +1,12 @@
-.breadcrumbs {
-    height: 5em;
-    width: 100vw;
-    display: flex;
-    background-color: white;
-    span {
-        margin: auto 0;
-    }
+section {
+  background-color: white;
+  display: flex;
+  height: 4em;
+  width: 100vw;
+  div {
+    font-size: 0.75em;
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+    width: 100%;
+  }
 }
