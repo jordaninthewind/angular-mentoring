@@ -5,16 +5,19 @@ header {
   height: 5em;
   width: 100vw;
   div {
-    flex-direction: row;
     margin-top: auto;
     margin-bottom: auto;
     width: 100%;
-    .nav-logo {
+    &.nav-logo {
       font-weight: bold;
-      span {
-      }
     }
-    .nav-links {
+    &.nav-links {
+      text-align: right;
+      &span {
+        &:before {
+          content: "x";
+        }
+      }
     }
   }
 }

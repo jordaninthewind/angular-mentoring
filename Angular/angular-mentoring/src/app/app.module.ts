@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { MainSectionComponent } from './main-section/main-section.component';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
+// import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    MatToolbarModule
+    // MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

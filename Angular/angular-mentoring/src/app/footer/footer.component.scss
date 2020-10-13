@@ -1,0 +1,17 @@
+footer {
+  background-color: rgb(47, 51, 63);
+  color: white;
+  display: flex;
+  font-size: 0.75em;
+  height: 5em;
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  div {
+    margin: auto;
+    max-width: 850px;
+    text-align: right;
+    width: 100%;
+  }
+}
