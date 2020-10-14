@@ -30,7 +30,7 @@ $green_accent: rgb(158, 198, 71);
 // -- sizes
 $border_radius: 0.25em;
 $base_font: 0.75em;
-$small_font: 0.5em;
+$small_font: 0.6em;
 
 // _COMPONENTS
 .blue {
@@ -46,7 +46,7 @@ button {
   color: white;
   &.small {
     font-size: $small_font;
-    padding: 5px;
+    padding: 5px 10px;
   }
   &.large {
     font-size: $base_font;

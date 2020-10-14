@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    FontAwesomeModule,
     // MatToolbarModule
   ],
   providers: [],
