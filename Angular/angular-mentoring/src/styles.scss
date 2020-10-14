@@ -20,3 +20,23 @@ div {
 .right {
   float: right;
 }
+
+// _variables
+$blue_accent: rgb(0, 161, 202);
+$green_accent: rgb(106, 161, 35);
+
+// _components
+.blue {
+  background-color: $blue_accent;
+}
+.green {
+  background-color: $green_accent;
+}
+// _elements
+button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bolder;
+  padding: 20px;
+}
