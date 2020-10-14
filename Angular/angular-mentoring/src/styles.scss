@@ -21,22 +21,45 @@ div {
   float: right;
 }
 
-// _variables
+// _VARIABLES
+// -- colors
 $blue_accent: rgb(0, 161, 202);
 $green_accent: rgb(106, 161, 35);
+// -- sizes
+$border_radius: 0.25em;
+$base_font: 0.75em;
+$small_font: 0.5em;
 
-// _components
+// _COMPONENTS
 .blue {
   background-color: $blue_accent;
 }
 .green {
   background-color: $green_accent;
 }
-// _elements
+// _ELEMENTS
 button {
   border: none;
-  border-radius: 5px;
+  border-radius: $border_radius;
   color: white;
-  font-weight: bolder;
-  padding: 20px;
+  &.small {
+    font-size: $small_font;
+    padding: 5px;
+  }
+  &.large {
+    font-size: $base_font;
+    padding: 1em 1.5em;
+  }
+}
+
+input {
+  border: 1px solid lightgrey;
+  border-radius: $border_radius;
+  font-size: $base_font;
+  margin-right: 1em;
+  padding: 1em;
+  width: 30%;
+  &::placeholder {
+    color: #BBB;
+  }
 }
