@@ -8,8 +8,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { MainSectionComponent } from './main-section/main-section.component';
+import { CourseItemComponent } from './course-item/course-item.component';
 
 // import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { MainSectionComponent } from './main-section/main-section.component';
     HeaderComponent,
     FooterComponent,
     BreadcrumbsComponent,
-    MainSectionComponent
+    MainSectionComponent,
+    CourseItemComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
     // MatToolbarModule
   ],
   providers: [],
