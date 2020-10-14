@@ -2,3 +2,16 @@
   background-color: white;
   margin-top: 1em;
 }
+
+mat-card-content {
+  width: 80%;
+}
+
+.card-buttons {
+  margin: 0;
+  width: fit-content;
+  flex-direction: row;
+  button {
+    margin: 1em;
+  }
+}

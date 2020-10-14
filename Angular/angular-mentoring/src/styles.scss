@@ -23,8 +23,10 @@ div {
 
 // _VARIABLES
 // -- colors
-$blue_accent: rgb(0, 161, 202);
-$green_accent: rgb(106, 161, 35);
+$blue_accent: rgb(33, 184, 219);
+$green_accent: rgb(158, 198, 71);
+// $blue_accent: rgb(0, 161, 202);
+// $green_accent: rgb(106, 161, 35);
 // -- sizes
 $border_radius: 0.25em;
 $base_font: 0.75em;
@@ -60,6 +62,6 @@ input {
   padding: 1em;
   width: 30%;
   &::placeholder {
-    color: #BBB;
+    color: #bbb;
   }
 }
