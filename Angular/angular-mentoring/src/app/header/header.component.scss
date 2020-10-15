@@ -13,11 +13,13 @@ header {
     }
     .nav-links {
       float: right;
-      span {
+      a {
         margin-left: 1em;
-        // &:before {
-        //   content: "x";
-        // }
+        text-decoration: none;
+        color: white;
+        &:hover {
+          border-bottom: 3px solid white;
+        }
       }
     }
   }
