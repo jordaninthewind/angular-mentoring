@@ -23,7 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     BreadcrumbsComponent,
     MainSectionComponent,
-    CourseItemComponent
+    CourseItemComponent,
   ],
   imports: [
     AppRoutingModule,

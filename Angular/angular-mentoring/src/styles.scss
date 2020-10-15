@@ -13,7 +13,7 @@ body {
 
 /// Constant for width across application.
 div {
-  max-width: 850px;
+  max-width: 1080px;
   margin: auto;
 }
 
@@ -31,6 +31,8 @@ $green_accent_hover: rgb(106, 161, 35);
 $border_radius: 0.25em;
 $base_font: 0.75em;
 $small_font: 0.675em;
+$standard_margin: 0.8em;
+$small_margin: 0.6em;
 
 // _COMPONENTS
 .blue {
@@ -52,11 +54,11 @@ button {
   color: white;
   &.small {
     font-size: $small_font;
-    padding: 5px 10px;
+    padding: $small_margin 10px;
   }
   &.large {
     font-size: $base_font;
-    padding: 1em 1.5em;
+    padding: $standard_margin ($standard_margin * 1.5);
   }
 }
 
@@ -65,9 +67,13 @@ input {
   border-radius: $border_radius;
   font-size: $base_font;
   margin-right: 1em;
-  padding: 1em;
-  width: 30%;
+  padding: $standard_margin;
+  width: 20%;
   &::placeholder {
     color: #bbb;
   }
+}
+
+fa-icon {
+  margin-right: 0.25em;
 }

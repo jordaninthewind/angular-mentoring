@@ -13,7 +13,5 @@
 </section>
 <br />
 <section>
-    <app-course-item></app-course-item>
-    <app-course-item></app-course-item>
-    <app-course-item></app-course-item>
+    <app-course-item *ngFor="let course of courses" [item]="course"></app-course-item>
 </section>

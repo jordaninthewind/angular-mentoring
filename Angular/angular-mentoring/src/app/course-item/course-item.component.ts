@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CourseItem } from './course-item-model';
 import { faClock, faCalendar, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,6 +14,8 @@ export class CourseItemComponent implements OnInit {
   faTrashAlt = faTrashAlt;
 
   constructor() { }
+
+  @Input() item: CourseItem;
 
   ngOnInit(): void {
   }
