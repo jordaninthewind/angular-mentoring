@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main-section',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-section.component.scss']
 })
 export class MainSectionComponent implements OnInit {
-
+  faPlusSquare = faPlusSquare;
   constructor() { }
 
   ngOnInit(): void {

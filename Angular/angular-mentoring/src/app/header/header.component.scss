@@ -14,9 +14,10 @@ header {
     .nav-links {
       float: right;
       span {
-        &:before {
-          content: "x";
-        }
+        margin-left: 1em;
+        // &:before {
+        //   content: "x";
+        // }
       }
     }
   }

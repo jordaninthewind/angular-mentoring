@@ -25,19 +25,25 @@ div {
 // -- colors
 $blue_accent: rgb(33, 184, 219);
 $green_accent: rgb(158, 198, 71);
-// $blue_accent: rgb(0, 161, 202);
-// $green_accent: rgb(106, 161, 35);
+$blue_accent_hover: rgb(0, 161, 202);
+$green_accent_hover: rgb(106, 161, 35);
 // -- sizes
 $border_radius: 0.25em;
 $base_font: 0.75em;
-$small_font: 0.6em;
+$small_font: 0.675em;
 
 // _COMPONENTS
 .blue {
   background-color: $blue_accent;
+  &:hover {
+    background-color: $blue_accent_hover;
+  }
 }
 .green {
   background-color: $green_accent;
+  &:hover {
+    background-color: $green_accent_hover;
+  }
 }
 // _ELEMENTS
 button {

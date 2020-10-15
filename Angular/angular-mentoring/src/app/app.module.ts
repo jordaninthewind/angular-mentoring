@@ -10,7 +10,6 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { MainSectionComponent } from './main-section/main-section.component';
 import { CourseItemComponent } from './course-item/course-item.component';
 
-// import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -34,7 +33,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatInputModule,
     MatButtonModule,
     FontAwesomeModule,
-    // MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
