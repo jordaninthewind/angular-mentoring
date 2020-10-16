@@ -14,9 +14,9 @@ header {
     .nav-links {
       float: right;
       a {
+        color: white;
         margin-left: 1em;
         text-decoration: none;
-        color: white;
         &:hover {
           border-bottom: 3px solid white;
         }

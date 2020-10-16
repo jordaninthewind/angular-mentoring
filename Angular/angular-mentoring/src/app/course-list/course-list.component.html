@@ -1,17 +1,14 @@
-<section class="cta-section">
-    <div>
+<div>
+    <section class="cta-section">
         <input class="" type="text" placeholder="Type to search">
         <button class="green large">Search</button>
-    </div>
-</section>
-<section>
-    <div>
+    </section>
+    <section>
         <button class="blue large right">
             <fa-icon [icon]="faPlusSquare"></fa-icon> Add course
         </button>
-    </div>
-</section>
-<br />
-<section>
+    </section>
+    <br />
     <app-course-item *ngFor="let course of courses" [item]="course"></app-course-item>
-</section>
+    <mat-card class="load-more-button" (click)="loadMore()">Load More</mat-card>
+</div>

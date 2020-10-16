@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CourseListComponent } from './course-list/course-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BreadcrumbsComponent,
     MainSectionComponent,
     CourseItemComponent,
+    CourseListComponent,
   ],
   imports: [
     AppRoutingModule,
