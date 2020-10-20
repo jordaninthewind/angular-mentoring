@@ -25,8 +25,19 @@ export class CourseListComponent implements OnInit {
 
   // Load more button
 
+  get totalCourseLength(): Number {
+    return this.coursesService.totalCoursesLength();
+  };
+
   loadMore(): void {
     console.log('this is loading more');
   }
 
+  onFilterClick(filter: String): void {
+    console.log(filter);
+  }
+
+  public onDeleteCourseNode(id: number): void {
+    console.log(`delete ${id} from list`);
+  }
 }

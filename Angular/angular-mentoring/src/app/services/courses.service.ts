@@ -43,6 +43,10 @@ export class CoursesService {
     return this.courses;
   }
 
+  totalCoursesLength(): Number {
+    return this.courses.length;
+  }
+
   deleteCourse(courseToDelete: CourseItem): void {
     this.courses = this.courses.filter(i => i.id !== courseToDelete.id);
   }

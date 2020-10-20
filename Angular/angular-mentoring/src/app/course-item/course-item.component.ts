@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseItem } from './course-item-model';
 import { faClock, faCalendar, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,7 +17,13 @@ export class CourseItemComponent implements OnInit {
 
   @Input() item: CourseItem;
 
+  @Output('onDeleteCourse') onDelete: EventEmitter<number> = new EventEmitter<number>();
+
   ngOnInit(): void {
+  }
+
+  public delete(): void {
+    this.onDelete.emit(this.item.id);
   }
 
 }
