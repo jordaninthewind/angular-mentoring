@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  background-color: rgb(245, 246, 250);
+  margin: 0 auto;
+}
+
+/// Constant for width across application.
+div {
+  max-width: 1080px;
+  margin: auto;
+}
+
+.right {
+  float: right;
+}
+
+// _VARIABLES
+// -- colors
+$blue_accent: rgb(33, 184, 219);
+$green_accent: rgb(158, 198, 71);
+$blue_accent_hover: rgb(0, 161, 202);
+$green_accent_hover: rgb(106, 161, 35);
+// -- sizes
+$border_radius: 0.25em;
+$base_font: 0.75em;
+$small_font: 0.675em;
+$standard_margin: 0.8em;
+$small_margin: 0.6em;
+
+// _COMPONENTS
+.blue {
+  background-color: $blue_accent;
+  &:hover {
+    background-color: $blue_accent_hover;
+  }
+}
+.green {
+  background-color: $green_accent;
+  &:hover {
+    background-color: $green_accent_hover;
+  }
+}
+// _ELEMENTS
+button {
+  border: none;
+  border-radius: $border_radius;
+  color: white;
+  &.small {
+    font-size: $small_font;
+    padding: $small_margin 10px;
+  }
+  &.large {
+    font-size: $base_font;
+    padding: $standard_margin ($standard_margin * 1.5);
+  }
+}
+
+input {
+  border: 1px solid lightgrey;
+  border-radius: $border_radius;
+  font-size: $base_font;
+  margin-right: 1em;
+  padding: $standard_margin;
+  width: 20%;
+  &::placeholder {
+    color: #bbb;
+  }
+}
+
+fa-icon {
+  margin-right: 0.25em;
+}
+
+mat-card {
+  margin-top: 1em;
+}

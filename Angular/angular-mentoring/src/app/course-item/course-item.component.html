@@ -1,0 +1,23 @@
+<div class="course-item">
+    <mat-card>
+        <div>
+            <mat-card-title>{{item.title}}
+                <mat-card-subtitle class="right">
+                    <fa-icon [icon]="faClock"></fa-icon> {{item.duration}} <fa-icon [icon]="faCalendar"></fa-icon>
+                    {{item.date}}
+                </mat-card-subtitle>
+            </mat-card-title>
+        </div>
+        <div style="display: flex;">
+            <mat-card-content>{{item.content}} </mat-card-content>
+            <span class="card-buttons">
+                <button class="small blue right">
+                    <fa-icon [icon]="faTrashAlt"></fa-icon> Delete
+                </button>
+                <button class="small blue right">
+                    <fa-icon [icon]="faEdit"></fa-icon> Edit
+                </button>
+            </span>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,26 @@
+header {
+  background-color: rgb(47, 51, 63);
+  color: white;
+  display: flex;
+  height: 4em;
+  width: 100vw;
+  .nav-container {
+    margin: auto;
+    width: 100%;
+    .nav-logo {
+      float: left;
+      font-weight: bold;
+    }
+    .nav-links {
+      float: right;
+      a {
+        color: white;
+        margin-left: 1em;
+        text-decoration: none;
+        &:hover {
+          border-bottom: 3px solid white;
+        }
+      }
+    }
+  }
+}
