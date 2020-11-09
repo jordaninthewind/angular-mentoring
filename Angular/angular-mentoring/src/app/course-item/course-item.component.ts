@@ -22,7 +22,7 @@ export class CourseItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public delete(): void {
+  public deleteCourse(): void {
     this.onDelete.emit(this.item.id);
   }
 
