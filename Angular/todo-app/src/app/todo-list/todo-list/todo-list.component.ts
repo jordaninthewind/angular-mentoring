@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListServiceService } from '../todo-list-service.service';
-import { TodoListItem } from './todo-list-item-model';
+import { TodoListItem } from '../todo-list-item/todo-list-item-model';
 
 @Component({
   selector: 'app-todo-list',

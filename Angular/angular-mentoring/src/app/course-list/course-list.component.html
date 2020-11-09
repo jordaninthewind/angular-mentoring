@@ -1,7 +1,7 @@
 <div>
     <section class="cta-section">
-        <input class="" type="text" placeholder="Type to search">
-        <button class="green large">Search</button>
+        <input #filterInput type="text" placeholder="Type to search">
+        <button class="green large" (click)=onFilterClick(filterInput.value)>Search</button>
     </section>
     <section>
         <button class="blue large right">
@@ -9,6 +9,10 @@
         </button>
     </section>
     <br />
-    <app-course-item *ngFor="let course of courses" [item]="course"></app-course-item>
+    <app-course-item 
+        (onDeleteCourse)="onDeleteCourseNode($event)" 
+        *ngFor="let course of courses" 
+        [item]="course">
+    </app-course-item>
     <mat-card class="load-more-button" (click)="loadMore()">Load More</mat-card>
 </div>
