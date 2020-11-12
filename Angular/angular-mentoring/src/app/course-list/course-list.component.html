@@ -14,5 +14,12 @@
         *ngFor="let course of courses" 
         [item]="course">
     </app-course-item>
-    <mat-card class="load-more-button" (click)="loadMore()">Load More</mat-card>
+    <mat-card 
+        *ngIf="courses.length > 0" 
+        (click)="loadMore()">
+        Load More
+    </mat-card>
+    <mat-card *ngIf="courses.length === 0">
+        NO DATA. FEEL FREE TO ENTER A NEW COURSE.
+    </mat-card>
 </div>

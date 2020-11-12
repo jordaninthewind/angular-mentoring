@@ -43,6 +43,6 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   public onDeleteCourseNode(id: number): void {
-    console.log(`delete ${id} from list`);
+    this.courses = this.courses.filter(course => course.id !== id);
   }
 }

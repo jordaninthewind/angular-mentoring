@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BorderColorDirective } from '../directives/border-color.directive';
+import { DurationPipe } from '../pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BreadcrumbsComponent,
     CourseItemComponent,
     CourseListComponent,
+    BorderColorDirective,
+    DurationPipe,
   ],
   imports: [
     AppRoutingModule,

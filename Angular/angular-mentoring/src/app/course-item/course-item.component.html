@@ -1,10 +1,11 @@
 <div class="course-item">
-    <mat-card>
+    <mat-card [appBorderColorBinding]="color">
         <div>
-            <mat-card-title>{{item.title}}
+            <mat-card-title>{{item.title | uppercase}}
+                <fa-icon *ngIf="item.topRated" [icon]="faStar" style="color:gold;"></fa-icon>
                 <mat-card-subtitle class="right">
-                    <fa-icon [icon]="faClock"></fa-icon> {{item.duration}} <fa-icon [icon]="faCalendar"></fa-icon>
-                    {{item.date}}
+                    <fa-icon [icon]="faClock"></fa-icon> {{item.duration | duration }} <fa-icon [icon]="faCalendar"></fa-icon>
+                    {{item.creationDate | date}}
                 </mat-card-subtitle>
             </mat-card-title>
         </div>
