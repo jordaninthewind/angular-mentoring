@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BorderColorDirective } from '../directives/border-color.directive';
 import { DurationPipe } from '../pipes/duration.pipe';
+import { OrderByPipe } from '../pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DurationPipe } from '../pipes/duration.pipe';
     CourseListComponent,
     BorderColorDirective,
     DurationPipe,
+    OrderByPipe,
   ],
   imports: [
     AppRoutingModule,

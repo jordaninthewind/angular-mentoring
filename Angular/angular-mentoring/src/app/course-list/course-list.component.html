@@ -10,13 +10,11 @@
     </section>
     <br />
     <app-course-item 
-        (onDeleteCourse)="onDeleteCourseNode($event)" 
-        *ngFor="let course of courses" 
+        (onDeleteCourse)="onDeleteCourseNode($event)"
+        *ngFor="let course of courses | orderBy" 
         [item]="course">
     </app-course-item>
-    <mat-card 
-        *ngIf="courses.length > 0" 
-        (click)="loadMore()">
+    <mat-card *ngIf="courses.length > 0" (click)="loadMore()">
         Load More
     </mat-card>
     <mat-card *ngIf="courses.length === 0">
