@@ -13,6 +13,8 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   public courses: CourseItem[] = [];
 
+  public filter: string;
+
   constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
@@ -38,8 +40,8 @@ export class CourseListComponent implements OnInit, OnChanges {
     console.log('this is loading more');
   }
 
-  public onFilterClick(filter: String): void {
-    console.log(filter);
+  public onFilterClick(filter: string): void {
+    this.filter = filter;
   }
 
   public onDeleteCourseNode(id: number): void {

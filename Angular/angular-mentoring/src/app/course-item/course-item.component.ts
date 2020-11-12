@@ -24,7 +24,7 @@ export class CourseItemComponent implements OnInit {
 
   ngOnInit(): void {
     const isInFuture = this.item.creationDate > new Date();
-    const isNewerThanAFortnite = (new Date() - this.item.creationDate) < 86400000 * 14;
+    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < 86400000 * 14;
 
     if (!isInFuture && isNewerThanAFortnite) {
       this.color = 'rgb(158, 198, 71)';

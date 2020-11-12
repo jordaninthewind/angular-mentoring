@@ -1,4 +1,4 @@
-import { BorderColorDirective } from '.ß/border-color.directive';
+import { BorderColorDirective } from './border-color.directive';
 
 describe('BorderColorDirective', () => {
   it('should create an instance', () => {
