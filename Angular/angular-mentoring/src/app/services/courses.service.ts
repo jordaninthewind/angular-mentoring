@@ -51,7 +51,19 @@ export class CoursesService {
     return this.courses.length;
   }
 
+  createCourse(courseInfo: CourseItem): void {
+    this.courses.push(courseInfo);
+  }
+
   deleteCourse(courseToDelete: CourseItem): void {
     this.courses = this.courses.filter(i => i.id !== courseToDelete.id);
+  }
+
+  updateCourse(courseInfo: CourseItem): void {
+    console.log(courseInfo);
+  }
+
+  getItemById(id: number): void {
+    console.log(id);
   }
 }
