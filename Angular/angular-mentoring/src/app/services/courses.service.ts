@@ -8,32 +8,36 @@ export class CoursesService {
 
   courses: CourseItem[] = [
     {
-      date: "8/28/2020",
-      duration: "1h 28 min",
+      creationDate: new Date('August 23, 2020'),
+      duration: 90,
       content: "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem",
       title: "First",
-      id: 1
+      id: 1,
+      topRated: true
     },
     {
-      date: "8/28/2020",
-      duration: "1h 28 min",
+      creationDate: new Date('December 25, 2020'),
+      duration: 110,
       content: "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem",
       title: "Second",
-      id: 2
+      id: 2,
+      topRated: false
     },
     {
-      date: "8/28/2020",
-      duration: "1h 28 min",
+      creationDate: new Date('February 25, 2020'),
+      duration: 40,
       content: "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem",
       title: "Third",
-      id: 3
+      id: 3,
+      topRated: false
     },
     {
-      date: "8/28/2020",
-      duration: "1h 28 min",
+      creationDate: new Date('November 10, 2020'),
+      duration: 60,
       content: "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem",
       title: "Fourth",
-      id: 4
+      id: 4,
+      topRated: true
     },
   ];
 
