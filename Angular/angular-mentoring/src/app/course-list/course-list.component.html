@@ -1,3 +1,6 @@
+<section>
+    <app-breadcrumbs></app-breadcrumbs>
+</section>
 <div>
     <section class="cta-section">
         <input #filterInput type="text" placeholder="Type to search">
@@ -9,7 +12,7 @@
         </button>
     </section>
     <br />
-    <app-course-item (onDeleteCourse)="onDeleteCourseNode($event)"
+    <app-course-item (removeCourse)="onDeleteCourseNode($event)" (updateCourse)="updateCourseNode($event)"
         *ngFor="let course of courses | orderBy | filter: filter" [item]="course">
     </app-course-item>
     <mat-card *ngIf="courses.length > 0" (click)="loadMore()">

@@ -26,7 +26,7 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   get totalCourseLength(): Number {
-    return this.coursesService.totalCoursesLength();
+    return this.coursesService.totalCoursesLength;
   };
 
   public loadMore(): void {
@@ -41,6 +41,10 @@ export class CourseListComponent implements OnInit, OnChanges {
     if (window.confirm('Are you sure you want to delete this course?')) {
       this.courses = this.courses.filter(course => course.id !== id);
     }
+  }
+
+  public updateCourseNode(item: CourseItem) {
+    this.coursesService.updateCourse(item);
   }
 
   public addNewCourse(): void {

@@ -47,7 +47,7 @@ export class CoursesService {
     return this.courses;
   }
 
-  totalCoursesLength(): Number {
+  get totalCoursesLength(): Number {
     return this.courses.length;
   }
 
@@ -60,10 +60,16 @@ export class CoursesService {
   }
 
   updateCourse(courseInfo: CourseItem): void {
-    console.log(courseInfo);
+    const course = this.getItemById(courseInfo.id);
+
+    if (course) {
+      const keys = Object.keys(course);
+
+      keys.forEach(key => course[key] = courseInfo[key]);
+    }
   }
 
-  getItemById(id: number): void {
-    console.log(id);
+  getItemById(id: number): CourseItem {
+    return this.courses.find(course => course.id === id);
   }
 }

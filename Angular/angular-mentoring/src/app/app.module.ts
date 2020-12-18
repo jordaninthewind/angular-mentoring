@@ -19,6 +19,7 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     FooterComponent,
     HeaderComponent,
     OrderByPipe,
+    LoginPageComponent,
   ],
   imports: [
     AppRoutingModule,
