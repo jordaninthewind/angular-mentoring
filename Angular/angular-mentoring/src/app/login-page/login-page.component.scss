@@ -1,0 +1,16 @@
+.centered-card {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin: auto;
+  min-height: 90%;
+  mat-card {
+    padding: 50px;
+    height: min-content;
+    width: min-content;
+  }
+}
+
+.card-body {
+  margin: auto;
+}

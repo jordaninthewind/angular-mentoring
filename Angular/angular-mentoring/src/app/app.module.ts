@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { BorderColorDirective } from './directives/border-color.directive';
 import { DurationPipe } from './pipes/duration.pipe';
@@ -43,6 +44,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
