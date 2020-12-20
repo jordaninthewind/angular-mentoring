@@ -1,20 +1,19 @@
 <div class="centered-card">
     <mat-card class="card-body">
         <h1 class="title">Login</h1>
-        <mat-form-field appearance="legacy">
+        <mat-form-field>
             <mat-label>E-mail</mat-label>
-            <input matInput (change)="updateValue($event)" formControlName="email" placeholder="Enter E-mail">
+            <input matInput type="text" [(ngModel)]="email" placeholder="Enter E-mail">
         </mat-form-field>
         <br />
         <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput (change)="updateValue($event)" formControlName="password" type="password"
-                placeholder="Enter Password">
+            <input matInput [(ngModel)]="password" type="password" placeholder="Enter Password">
         </mat-form-field>
         <br />
         <div class="inline-flex">
-            <a href="/">Forgot password?</a>
-            <button class="blue large right" (click)="login()">Login</button>
+            <a [routerLink]="['/']">Forgot password?</a>
+            <button [routerLink]="['/courses-list']" class="blue large right" (click)="login()">Login</button>
         </div>
     </mat-card>
 </div>

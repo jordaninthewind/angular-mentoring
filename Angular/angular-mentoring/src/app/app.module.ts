@@ -21,6 +21,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,12 +42,13 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserAnimationsModule,
     BrowserModule,
     FontAwesomeModule,
+    FormsModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [{ provide: Window, useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

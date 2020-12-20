@@ -13,4 +13,8 @@
 
 .card-body {
   margin: auto;
+  mat-form-field {
+    width: 280px;
+  }
 }
+

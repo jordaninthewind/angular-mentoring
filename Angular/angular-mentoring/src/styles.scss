@@ -83,5 +83,7 @@ mat-card {
 }
 
 .inline-flex {
+  width: 100%;
   display: inline-flex;
+  justify-content: space-between;
 } 

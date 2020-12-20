@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,22 +7,16 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  email = new FormControl('');
-  password = new FormControl('');
+  email = '';
+  password = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  updateValue(event: Event): void {
-    console.log(event);
-  }
-
   login(): void {
-    console.log('logged in');
-    console.log(this.email.value);
-    console.log(this.password.value);
+    this.authService.login('eventually this will be a user object.');
+    console.log('user logged in.');
   }
-
 }
