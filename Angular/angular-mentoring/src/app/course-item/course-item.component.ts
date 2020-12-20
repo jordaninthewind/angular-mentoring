@@ -24,13 +24,17 @@ export class CourseItemComponent implements OnInit {
 
   ngOnInit(): void {
     const isInFuture = this.item.creationDate > new Date();
-    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < 86400000 * 14;
+    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < this.calculateDays(14);
 
     if (!isInFuture && isNewerThanAFortnite) {
       this.color = 'rgb(158, 198, 71)';
     } else if (isInFuture) {
       this.color = 'rgb(33, 184, 219)';
     }
+  }
+
+  public calculateDays(days: number): number {
+    return 86400000 * days;
   }
 
   public deleteCourse(): void {
