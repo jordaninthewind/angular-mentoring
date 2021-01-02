@@ -38,7 +38,8 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   public onDeleteCourseNode(id: number): void {
-    if (window.confirm('Are you sure you want to delete this course?')) {
+    const courseName = this.coursesService.getItemById(id).title;
+    if (window.confirm(`Are you sure you want to delete '${courseName}'?`)) {
       this.courses = this.courses.filter(course => course.id !== id);
     }
   }

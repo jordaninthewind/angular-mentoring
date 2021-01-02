@@ -2,7 +2,7 @@
     <mat-card [appBorderColorBinding]="color">
         <div>
             <mat-card-title>{{item.title | uppercase}}
-                <fa-icon *ngIf="item.topRated" [icon]="faStar" style="color:gold;"></fa-icon>
+                <fa-icon class="star" *ngIf="item.topRated" [icon]="faStar"></fa-icon>
                 <mat-card-subtitle class="right">
                     <fa-icon [icon]="faClock"></fa-icon> {{item.duration | duration }} <fa-icon [icon]="faCalendar">
                     </fa-icon>
