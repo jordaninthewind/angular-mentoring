@@ -41,11 +41,9 @@ export class CoursesService {
     },
   ];
 
-  constructor() { }
+  public id: number = 5;
 
-  getCourses(): CourseItem[] {
-    return this.courses;
-  }
+  constructor() { }
 
   get totalCoursesLength(): Number {
     return this.courses.length;
@@ -57,6 +55,10 @@ export class CoursesService {
 
   deleteCourse(courseToDelete: CourseItem): void {
     this.courses = this.courses.filter(i => i.id !== courseToDelete.id);
+  }
+
+  getCourses(): CourseItem[] {
+    return this.courses;
   }
 
   updateCourse(courseInfo: CourseItem): void {

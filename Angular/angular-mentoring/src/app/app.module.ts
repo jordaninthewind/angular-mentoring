@@ -22,6 +22,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { NewCourseComponent } from './new-course/new-course.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     OrderByPipe,
     LoginPageComponent,
+    NewCourseComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -44,6 +47,7 @@ import { FormsModule } from '@angular/forms';
     FontAwesomeModule,
     FormsModule,
     MatCardModule,
+    MatDialogModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule

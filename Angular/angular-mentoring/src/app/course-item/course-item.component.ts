@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseItem } from './course-item-model';
 import { faClock, faCalendar, faTrashAlt, faEdit, faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,7 +21,7 @@ export class CourseItemComponent implements OnInit {
   @Output() removeCourse: EventEmitter<number> = new EventEmitter<number>();
   @Output() updateCourse: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
 
-  constructor() { }
+  constructor(private _cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this._selectTileColor();
@@ -48,5 +48,6 @@ export class CourseItemComponent implements OnInit {
 
   public editCourse(): void {
     this.updateCourse.emit(this.item);
+    this._cdRef.markForCheck();
   }
 }

@@ -1,7 +1,3 @@
-.course-item {
-  background-color: white;
-}
-
 mat-card-content {
   width: 80%;
 }
@@ -12,6 +8,10 @@ mat-card-content {
   button {
     margin-right: 1em;
   }
+}
+
+.course-item {
+  background-color: white;
 }
 
 .star {

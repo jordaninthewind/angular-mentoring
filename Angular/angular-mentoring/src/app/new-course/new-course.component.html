@@ -1,0 +1,24 @@
+<section>
+    <p>
+        <label>Title:</label>
+        <input type="text" [(ngModel)]="newCourse.title" />
+    </p>
+    <p>
+        <label>Description:</label>
+        <textarea [(ngModel)]="newCourse.content"></textarea>
+    </p>
+    <p>
+        <label>Date:</label>
+        <input type="date" [(ngModel)]="newCourse.creationDate" />
+    </p>
+    <p>
+        <label>Duration: {{newCourse.duration | duration}}</label>
+        <input type="number" [(ngModel)]="newCourse.duration" />
+    </p>
+    <p>
+        <label>Authors:</label>
+        <input type="text" [(ngModel)]="newCourse.authors" />
+    </p>
+    <button class="blue large" (click)="addCourse()">Save</button>
+    <button class="green large" (click)="closeDialog()">Cancel</button>
+</section>
