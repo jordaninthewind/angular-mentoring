@@ -7,11 +7,15 @@
         <span *ngIf="isAuthenticated !== false" class="nav-links">
             <a (click)="logout()">
                 <fa-icon [icon]="faUser"></fa-icon>
-                User login
+                <span>
+                    User login
+                </span>
             </a>
             <a [routerLink]="['/login']" (click)="logout()">
                 <fa-icon [icon]="faWindowClose"></fa-icon>
-                Log off
+                <span>
+                    Log off
+                </span>
             </a>
         </span>
     </div>

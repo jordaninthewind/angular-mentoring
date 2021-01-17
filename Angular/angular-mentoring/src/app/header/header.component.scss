@@ -17,8 +17,10 @@ header {
         color: white;
         margin-left: 1em;
         text-decoration: none;
-        &:hover {
-          border-bottom: 3px solid white;
+        span {
+          &:hover {
+            border-bottom: 3px solid white;
+          }
         }
       }
     }

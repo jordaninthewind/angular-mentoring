@@ -10,10 +10,11 @@
             <mat-label>Password</mat-label>
             <input matInput [(ngModel)]="password" type="password" placeholder="Enter Password">
         </mat-form-field>
+        <mat-error *ngIf="error != ''">{{ error }}</mat-error>
         <br />
         <div class="inline-flex">
             <a [routerLink]="['/']">Forgot password?</a>
-            <button [routerLink]="['/courses-list']" class="blue large right" (click)="login()">Login</button>
+            <button class="blue large right" (click)="login()">Login</button>
         </div>
     </mat-card>
 </div>

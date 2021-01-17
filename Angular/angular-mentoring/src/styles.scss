@@ -82,8 +82,12 @@ mat-card {
   margin-top: 1em;
 }
 
+.flex {
+  display: flex;
+}
+
 .inline-flex {
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
-} 
+}

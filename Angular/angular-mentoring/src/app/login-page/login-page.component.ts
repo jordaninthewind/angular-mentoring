@@ -9,14 +9,18 @@ import { AuthService } from '../services/auth.service';
 export class LoginPageComponent implements OnInit {
   email = '';
   password = '';
+  error = '';
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(): void {
-    this.authService.login('eventually this will be a user object.');
-    console.log('user logged in.');
+    try {
+      this.authService.login(this.email, this.password);
+      this.error = '';
+    } catch(err) {
+      this.error = err.message;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faUser, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../services/auth.service';
 
