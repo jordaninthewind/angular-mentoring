@@ -6,7 +6,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: '', pathMatch: 'full', redirectTo: 'courses' },
   { path: 'login', component: LoginPageComponent },
   { path: 'courses', component: CourseListComponent, canActivate: [AuthGuard] },
   { path: 'courses/:id', component: CourseListComponent },
