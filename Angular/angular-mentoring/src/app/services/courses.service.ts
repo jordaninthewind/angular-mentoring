@@ -72,6 +72,6 @@ export class CoursesService {
   }
 
   getItemById(id: number): CourseItem {
-    return this.courses.find(course => course.id === id);
+    return this.courses.find(course => course.id == id);
   }
 }

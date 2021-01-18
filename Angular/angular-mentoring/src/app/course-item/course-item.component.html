@@ -14,10 +14,10 @@
             <mat-card-content>{{ item.content }} </mat-card-content>
             <span class="card-buttons">
                 <button class="small blue right" (click)="deleteCourse()">
-                    <fa-icon [icon]="faTrashAlt"></fa-icon> Delete
+                    <fa-icon [icon]="faTrashAlt"></fa-icon>Delete
                 </button>
-                <button class="small blue right" (click)="editCourse()">
-                    <fa-icon [icon]="faEdit"></fa-icon> Edit
+                <button class="small blue right" routerLink="/courses/{{item.id}}">
+                    <fa-icon [icon]="faEdit"></fa-icon>Edit
                 </button>
             </span>
         </div>
