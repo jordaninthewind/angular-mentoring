@@ -68,7 +68,7 @@ export class CourseListComponent implements OnInit, OnChanges {
     this.dialogRef = this.dialog.open(NewCourseComponent, { data: item });
 
     const submitSubscription = this.dialogRef.componentInstance.newCourseSubmitted.subscribe(result => {
-      this.coursesService.createCourse(result);
+      this.coursesService.createOrUpdateCourse(result);
       submitSubscription.unsubscribe();
     });
   }
