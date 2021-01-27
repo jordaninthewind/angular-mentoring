@@ -1,27 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CourseItem } from '../course-item/course-item-model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CoursesService implements OnInit {
-  public courses$: Observable<CourseItem[]>;
-  public courses: CourseItem[];
-  public count: number = 10;
+export class CoursesService {
   public baseUrl = 'http://localhost:3004';
+  public count: number = 10;
 
-  constructor(private _http: HttpClient) {
-    this.getCourses();
-  }
+  constructor(private _http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.courses = this.courses$.valueChanges
-  }
-
-  getCourses(): void {
-    this.courses$ = this._http.get<CourseItem[]>(`${this.baseUrl}/courses?sort=date&count=${this.count}`, httpOptions);
+  getCourses(): Observable<CourseItem[]> {
+    return this._http.get<CourseItem[]>(`${this.baseUrl}/courses?sort=date&count=${this.count}`, httpOptions);
   }
 
   public loadMore(): void {
@@ -32,7 +24,7 @@ export class CoursesService implements OnInit {
   createOrUpdateCourse(courseInfo: CourseItem): void {
     if (this.updateCourse(courseInfo)) return;
 
-    this.courses.push(courseInfo);
+    // this.courses.push(courseInfo);
   }
 
   deleteCourse(courseToDelete: CourseItem): void {

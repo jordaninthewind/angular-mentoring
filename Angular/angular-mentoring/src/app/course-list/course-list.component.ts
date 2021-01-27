@@ -6,6 +6,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CourseItemComponent } from '../course-item/course-item.component';
 
 @Component({
   selector: 'app-course-list',
@@ -19,16 +20,17 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   public newCourseVisible: boolean = false;
 
-  public courses$: Observable<CourseItem[]>;
+  public courses: CourseItem[];
 
   public filter: string;
 
   public params: string;
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) { }
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.courses$ = this.coursesService.courses$;
+    this.loadCourses();
+
     this.params = this.route.snapshot.params.id;
 
     if (this.params) this.openNewCourseModal(this.params);
@@ -38,8 +40,15 @@ export class CourseListComponent implements OnInit, OnChanges {
     console.log('on changes');
   }
 
+  public loadCourses(): void {
+    this.coursesService.getCourses().subscribe(response => {
+      this.courses = response;
+    });
+  }
+
   public loadMore(): void {
     this.coursesService.loadMore();
+    this.loadCourses();
   }
 
   public onFilterClick(filter: string): void {
@@ -47,13 +56,14 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   public onDeleteCourseNode(id: number): void {
-    const { name } = this.coursesService.getItemById(id);
+    // const item = this.coursesService.getItemById(id);
 
-    if (window.confirm(`Are you sure you want to delete '${ name }'?`)) {
+    if (window.confirm(`Are you sure you want to delete this item?`)) {
+    // if (window.confirm(`Are you sure you want to delete '${ item.name }'?`)) {
       // this.courses = this.courses.filter(course => course.id !== id);
       // Delete logic for courses on backend
     }
-  }
+  } 
 
   public updateCourseNode(item: CourseItem) {
     this.coursesService.updateCourse(item);
