@@ -1,12 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CourseItem } from '../course-item/course-item-model';
 
 @Pipe({
   name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
 
-  transform(courses: any[]): any {
-    return courses.sort((course, comp) => comp.creationDate - course.creationDate);
+  transform(courses: CourseItem[]): any {
+    return courses?.sort((course, comp) => {
+      return parseInt(comp.date) - parseInt(course.date);
+    });
   }
 
 }

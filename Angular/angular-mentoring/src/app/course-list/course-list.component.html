@@ -13,12 +13,12 @@
     </section>
     <br />
     <app-course-item (removeCourse)="onDeleteCourseNode($event)" (updateCourse)="updateCourseNode($event)"
-        *ngFor="let course of courses | orderBy | filter: filter" [item]="course">
+        *ngFor="let course of courses$ | async" [item]="course">
     </app-course-item>
-    <mat-card *ngIf="courses.length > 0" (click)="loadMore()">
+    <mat-card (click)="loadMore()">
         Load More
     </mat-card>
-    <mat-card *ngIf="courses.length === 0">
+    <mat-card *ngIf="(courses$ | async)?.length === 0">
         NO DATA. FEEL FREE TO ENTER A NEW COURSE.
     </mat-card>
 </div>
