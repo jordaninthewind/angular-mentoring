@@ -12,8 +12,8 @@ export class CoursesService {
 
   constructor(private _http: HttpClient) {}
 
-  getCourses(): Observable<CourseItem[]> {
-    return this._http.get<CourseItem[]>(`${this.baseUrl}/courses?sort=date&count=${this.count}`, httpOptions);
+  getCourses(filter = ''): Observable<CourseItem[]> {
+    return this._http.get<CourseItem[]>(`${this.baseUrl}/courses?sort=date&count=${this.count}&textFragment=${filter}`, httpOptions);
   }
 
   public loadMore(): void {
@@ -41,7 +41,8 @@ export class CoursesService {
     //   keys.forEach(key => course[key] = courseInfo[key]);
     //   return true;
     // }
-    return false
+    this.getCourses();
+    return true;
   }
 
   // getItemById(id: number): CourseItem {

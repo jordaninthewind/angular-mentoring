@@ -5,15 +5,13 @@ import { CoursesService } from '../services/courses.service';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { CourseItemComponent } from '../course-item/course-item.component';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent implements OnInit, OnChanges {
+export class CourseListComponent implements OnInit {
   public dialogRef: MatDialogRef<NewCourseComponent>;
 
   faPlusSquare = faPlusSquare;
@@ -26,7 +24,9 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   public params: string;
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) {}
+  public loading: boolean = false;
+
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadCourses();
@@ -36,13 +36,11 @@ export class CourseListComponent implements OnInit, OnChanges {
     if (this.params) this.openNewCourseModal(this.params);
   }
 
-  ngOnChanges(): void {
-    console.log('on changes');
-  }
-
-  public loadCourses(): void {
-    this.coursesService.getCourses().subscribe(response => {
+  public loadCourses(filter: string = ''): void {
+    this.loading = true;
+    this.coursesService.getCourses(filter).subscribe(response => {
       this.courses = response;
+      this.loading = false;
     });
   }
 
@@ -51,19 +49,15 @@ export class CourseListComponent implements OnInit, OnChanges {
     this.loadCourses();
   }
 
-  public onFilterClick(filter: string): void {
-    this.filter = filter;
-  }
-
   public onDeleteCourseNode(id: number): void {
     // const item = this.coursesService.getItemById(id);
 
     if (window.confirm(`Are you sure you want to delete this item?`)) {
-    // if (window.confirm(`Are you sure you want to delete '${ item.name }'?`)) {
+      // if (window.confirm(`Are you sure you want to delete '${ item.name }'?`)) {
       // this.courses = this.courses.filter(course => course.id !== id);
       // Delete logic for courses on backend
     }
-  } 
+  }
 
   public updateCourseNode(item: CourseItem) {
     this.coursesService.updateCourse(item);
@@ -71,7 +65,7 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   public openNewCourseModal(data: any): void {
     let item: void;
-    
+
     if (typeof parseInt(data) === 'number') item = this.coursesService.getItemById(data);
     this.dialogRef = this.dialog.open(NewCourseComponent, { data: item });
 
