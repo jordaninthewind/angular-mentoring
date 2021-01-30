@@ -1,10 +1,11 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CourseItem } from '../course-item/course-item-model';
 import { CoursesService } from '../services/courses.service';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-course-list',
@@ -14,7 +15,12 @@ import { ActivatedRoute } from '@angular/router';
 export class CourseListComponent implements OnInit {
   public dialogRef: MatDialogRef<NewCourseComponent>;
 
+  @ViewChild('filterInput')
+  public filterValue;
+
   faPlusSquare = faPlusSquare;
+
+  public searchFilterChange = new Subject<string>();
 
   public newCourseVisible: boolean = false;
 
@@ -31,6 +37,10 @@ export class CourseListComponent implements OnInit {
   ngOnInit(): void {
     this.loadCourses();
 
+    this.searchFilterChange.subscribe({
+      next: (val) => this.loadCourses(val),
+    });
+
     this.params = this.route.snapshot.params.id;
 
     if (this.params) this.openNewCourseModal(this.params);
@@ -42,6 +52,10 @@ export class CourseListComponent implements OnInit {
       this.courses = response;
       this.loading = false;
     });
+  }
+
+  public filterChange(filter: string): void {
+    if (filter.length >= 3 || filter.length == 0) this.searchFilterChange.next(filter);
   }
 
   public loadMore(): void {
@@ -59,7 +73,7 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  public updateCourseNode(item: CourseItem) {
+  public updateCourseNode(item: CourseItem): void {
     this.coursesService.updateCourse(item);
   }
 

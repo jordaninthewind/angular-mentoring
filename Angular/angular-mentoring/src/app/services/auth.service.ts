@@ -47,14 +47,13 @@ export class AuthService {
     this.http.post(userInfoUrl, { token: this.getToken })
       .subscribe(
         data => {
-          const { id, login, password, name, fakeToken } = data;
           return {
-            id,
-            firstName: name.first,
-            lastName: name.last,
-            email: login,
-            password,
-            token: fakeToken
+            id: data['id'],
+            firstName: data['name']['first'],
+            lastName: data['name']['last'],
+            email: data['login'],
+            password: data['password'],
+            token: data['fakeToken']
           }
         },
         err => {

@@ -3,8 +3,7 @@
 </section>
 <div>
     <section class="cta-section">
-        <input #filterInput type="text" placeholder="Type to search">
-        <button class="green large" (click)=loadCourses(filterInput.value)>Search</button>
+        <input type="text" (keyup)=filterChange($event.target.value) placeholder="Type to search">
     </section>
     <section>
         <button class="blue large right" routerLink="/courses/new">
