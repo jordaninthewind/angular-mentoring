@@ -6,6 +6,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-list',
@@ -15,18 +16,13 @@ import { Subject } from 'rxjs';
 export class CourseListComponent implements OnInit {
   public dialogRef: MatDialogRef<NewCourseComponent>;
 
-  @ViewChild('filterInput')
-  public filterValue;
-
   faPlusSquare = faPlusSquare;
 
-  public searchFilterChange = new Subject<string>();
+  private searchFilterSubject = new Subject<string>();
 
   public newCourseVisible: boolean = false;
 
   public courses: CourseItem[];
-
-  public filter: string;
 
   public params: string;
 
@@ -36,11 +32,9 @@ export class CourseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCourses();
-
-    this.searchFilterChange.subscribe({
-      next: (val) => this.loadCourses(val),
-    });
-
+    this.searchFilterSubject
+      .pipe(debounceTime(250))
+      .subscribe((val) => this.loadCourses(val));
     this.params = this.route.snapshot.params.id;
 
     if (this.params) this.openNewCourseModal(this.params);
@@ -55,7 +49,7 @@ export class CourseListComponent implements OnInit {
   }
 
   public filterChange(filter: string): void {
-    if (filter.length >= 3 || filter.length == 0) this.searchFilterChange.next(filter);
+    if (filter.length >= 3 || filter.length == 0) this.searchFilterSubject.next(filter);
   }
 
   public loadMore(): void {
