@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { MessageService } from '../message.service';
 import { UserModel } from '../user-model';
 
 @Injectable({
@@ -8,9 +10,14 @@ import { UserModel } from '../user-model';
 })
 export class AuthService {
   user: UserModel;
-  error: String;
+  // errorMessage: string;
 
-  constructor(private window: Window, private router: Router, private http: HttpClient) { }
+  // public authMessageService = new Subject<any>();
+
+  constructor(private window: Window, private router: Router, private http: HttpClient, private messageService: MessageService) {
+    // this.authServiceError.subscribe({ next: val => val })
+  }
+
 
   login(login: String, password: String): void {
     this.http.post(authUrl, { login, password })
@@ -21,9 +28,8 @@ export class AuthService {
           this.router.navigateByUrl('/courses');
         },
         err => {
-          this.error = err.error;
-        }
-      )
+          this.messageService.sendErrorMessage(err.error);
+        });
   }
 
   logout(): void {
@@ -58,7 +64,7 @@ export class AuthService {
         },
         err => {
           console.log(err);
-          // this.error = err.error;
+          this.errorMessage = err.err;
         }
       )
     return this.user;
