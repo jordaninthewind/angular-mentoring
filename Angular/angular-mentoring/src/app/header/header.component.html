@@ -4,13 +4,11 @@
             <!-- ICON -->
             <span>VIDEO COURSE</span>
         </span>
-        <span *ngIf="isAuthenticated !== false" class="nav-links">
-            <a (click)="logout()">
-                <fa-icon [icon]="faUser"></fa-icon>
-                <span>
-                    User login
-                </span>
-            </a>
+        <span *ngIf="user" class="nav-links">
+            <fa-icon [icon]="faUser"></fa-icon>
+            <span>
+                Welcome, {{user.firstName}}!
+            </span>
             <a [routerLink]="['/login']" (click)="logout()">
                 <fa-icon [icon]="faWindowClose"></fa-icon>
                 <span>

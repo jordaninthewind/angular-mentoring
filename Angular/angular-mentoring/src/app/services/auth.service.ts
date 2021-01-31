@@ -10,14 +10,15 @@ import { UserModel } from '../user-model';
 })
 export class AuthService {
   user: UserModel;
-  // errorMessage: string;
 
-  // public authMessageService = new Subject<any>();
+  userInfo = new Subject<any>();
 
-  constructor(private window: Window, private router: Router, private http: HttpClient, private messageService: MessageService) {
-    // this.authServiceError.subscribe({ next: val => val })
-  }
-
+  constructor(
+    private window: Window,
+    private router: Router,
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
 
   login(login: String, password: String): void {
     this.http.post(authUrl, { login, password })
@@ -30,6 +31,29 @@ export class AuthService {
         err => {
           this.messageService.sendErrorMessage(err.error);
         });
+  }
+
+  getUserInfo(): UserModel {
+    if (!this.isAuthenticated) return;
+
+    this.http.post(userInfoUrl, { token: this.getToken })
+      .subscribe(
+        data => {
+          this.user = {
+            id: data['id'],
+            firstName: data['name']['first'],
+            lastName: data['name']['last'],
+            email: data['login'],
+            password: data['password'],
+            token: data['fakeToken']
+          };
+
+          this.userInfo.next(this.user);
+        },
+        err => {
+          this.messageService.sendErrorMessage(err.error);
+        }
+      )
   }
 
   logout(): void {
@@ -47,27 +71,8 @@ export class AuthService {
     return this.window.localStorage.getItem(authKey);
   }
 
-  getUserInfo(): UserModel {
-    if (!this.isAuthenticated) return;
-
-    this.http.post(userInfoUrl, { token: this.getToken })
-      .subscribe(
-        data => {
-          return {
-            id: data['id'],
-            firstName: data['name']['first'],
-            lastName: data['name']['last'],
-            email: data['login'],
-            password: data['password'],
-            token: data['fakeToken']
-          }
-        },
-        err => {
-          console.log(err);
-          this.errorMessage = err.err;
-        }
-      )
-    return this.user;
+  getUserInfoObservable(): Observable<any> {
+    return this.userInfo.asObservable();
   }
 }
 

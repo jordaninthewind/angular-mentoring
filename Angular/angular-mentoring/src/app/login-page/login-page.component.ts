@@ -21,7 +21,6 @@ export class LoginPageComponent implements OnDestroy {
     })
   }
 
-  // Why does this work with Async/Await and an observable?
   login(): void {
       this.authService.login(this.email, this.password);
   }
