@@ -26,6 +26,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
     LoginPageComponent,
     NewCourseComponent,
     NotFoundComponent,
+    LoadingOverlayComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -12,6 +12,7 @@ export class AuthService {
   user: UserModel;
 
   userInfo = new Subject<any>();
+  private _isLoggedIn: Observable<boolean>;
 
   constructor(
     private window: Window,
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   getUserInfo(): UserModel {
-    if (!this.isAuthenticated) return;
+    // if (!this.isAuthenticated) return;
 
     this.http.post(userInfoUrl, { token: this.getToken })
       .subscribe(

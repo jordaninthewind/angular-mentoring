@@ -1,0 +1,13 @@
+.loading-overlay {
+    background-color: rgba(0,0,0,.25);
+    height: 100vh;
+    margin: auto;
+    position: absolute;
+    width: 100vw;
+    z-index: 100000;
+    mat-spinner {
+        left: 50%;
+        position: fixed;
+        top: 50%;
+    }
+}
