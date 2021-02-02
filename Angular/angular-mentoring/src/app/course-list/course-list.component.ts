@@ -4,6 +4,7 @@ import { CourseItem } from '../course-item/course-item-model';
 import { CoursesService } from '../services/courses.service';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { NewCourseComponent } from '../new-course/new-course.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -21,10 +22,15 @@ export class CourseListComponent implements OnInit, OnChanges {
 
   public filter: string;
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog) { }
+  public params: string;
+
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.courses = this.coursesService.getCourses();
+    this.params = this.route.snapshot.params.id;
+
+    if (this.params) this.openNewCourseModal(this.params);
   }
 
   ngOnChanges(): void {
@@ -44,8 +50,9 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   public onDeleteCourseNode(id: number): void {
-    const courseName = this.coursesService.getItemById(id).title;
-    if (window.confirm(`Are you sure you want to delete '${courseName}'?`)) {
+    const { title } = this.coursesService.getItemById(id);
+
+    if (window.confirm(`Are you sure you want to delete '${title}'?`)) {
       this.courses = this.courses.filter(course => course.id !== id);
     }
   }
@@ -54,11 +61,14 @@ export class CourseListComponent implements OnInit, OnChanges {
     this.coursesService.updateCourse(item);
   }
 
-  public openNewCourseModal(event: any, data: any): void {
-    this.dialogRef = this.dialog.open(NewCourseComponent);
+  public openNewCourseModal(data: any): void {
+    let item: CourseItem;
+    
+    if (typeof parseInt(data) === 'number') item = this.coursesService.getItemById(data);
+    this.dialogRef = this.dialog.open(NewCourseComponent, { data: item });
 
     const submitSubscription = this.dialogRef.componentInstance.newCourseSubmitted.subscribe(result => {
-      this.coursesService.createCourse(result);
+      this.coursesService.createOrUpdateCourse(result);
       submitSubscription.unsubscribe();
     });
   }

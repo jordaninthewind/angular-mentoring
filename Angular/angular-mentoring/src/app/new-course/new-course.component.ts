@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CourseItem } from '../course-item/course-item-model';
 
 @Component({
@@ -8,20 +8,22 @@ import { CourseItem } from '../course-item/course-item-model';
   styleUrls: ['./new-course.component.scss']
 })
 export class NewCourseComponent implements OnInit {
-  newCourse = {
+  newCourse: CourseItem = {
     creationDate: new Date(),
-    duration: 60,
-    content: "Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem",
-    title: "Fourth",
-    id: 4,
-    topRated: true
+    duration: 0,
+    content: "",
+    title: "",
+    topRated: false
   };
 
   @Output() newCourseSubmitted: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
 
-  constructor(public dialogRef: MatDialogRef<NewCourseComponent>) { }
+  constructor(public dialogRef: MatDialogRef<NewCourseComponent>, @Inject(MAT_DIALOG_DATA) public data: CourseItem) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    console.log('this is null: ' + this.data);
+    if (this.data !== null) this.newCourse = this.data;
+  }
 
   public addCourse() {
     this.newCourseSubmitted.emit(this.newCourse);

@@ -24,6 +24,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     OrderByPipe,
     LoginPageComponent,
     NewCourseComponent,
+    NotFoundComponent,
   ],
   imports: [
     AppRoutingModule,

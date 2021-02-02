@@ -49,7 +49,9 @@ export class CoursesService {
     return this.courses.length;
   }
 
-  createCourse(courseInfo: CourseItem): void {
+  createOrUpdateCourse(courseInfo: CourseItem): void {    
+    if (this.updateCourse(courseInfo)) return;
+    
     this.courses.push(courseInfo);
   }
 
@@ -61,17 +63,19 @@ export class CoursesService {
     return this.courses;
   }
 
-  updateCourse(courseInfo: CourseItem): void {
+  updateCourse(courseInfo: CourseItem): boolean {
     const course = this.getItemById(courseInfo.id);
 
     if (course) {
       const keys = Object.keys(course);
 
       keys.forEach(key => course[key] = courseInfo[key]);
+      return true;
     }
+    return false
   }
 
   getItemById(id: number): CourseItem {
-    return this.courses.find(course => course.id === id);
+    return this.courses.find(course => course.id == id);
   }
 }
