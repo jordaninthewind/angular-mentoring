@@ -2,7 +2,8 @@ export interface CourseItem {
     content: string,
     creationDate: Date,
     duration: number,
-    id: number
+    id?: number,
     title: string,
-    topRated: boolean
+    topRated?: boolean,
+    authors?: string
 }

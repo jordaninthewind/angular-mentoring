@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CourseItem } from './course-item-model';
 import { faClock, faCalendar, faTrashAlt, faEdit, faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.scss']
+  styleUrls: ['./course-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
   faCalendar = faCalendar;
@@ -20,11 +21,15 @@ export class CourseItemComponent implements OnInit {
   @Output() removeCourse: EventEmitter<number> = new EventEmitter<number>();
   @Output() updateCourse: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
 
-  constructor() { }
+  constructor(private _cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this._selectTileColor();
+  }
+
+  private _selectTileColor() {
     const isInFuture = this.item.creationDate > new Date();
-    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < this.calculateDays(14);
+    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < this._calculateDays(14);
 
     if (!isInFuture && isNewerThanAFortnite) {
       this.color = 'rgb(158, 198, 71)';
@@ -33,7 +38,7 @@ export class CourseItemComponent implements OnInit {
     }
   }
 
-  public calculateDays(days: number): number {
+  private _calculateDays(days: number): number {
     return 86400000 * days;
   }
 
@@ -43,5 +48,6 @@ export class CourseItemComponent implements OnInit {
 
   public editCourse(): void {
     this.updateCourse.emit(this.item);
+    this._cdRef.markForCheck();
   }
 }
