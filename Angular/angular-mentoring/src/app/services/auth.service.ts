@@ -5,6 +5,10 @@ import { Observable, Subject } from 'rxjs';
 import { MessageService } from '../message.service';
 import { UserModel } from '../user-model';
 
+const authKey = 'token';
+const authUrl = 'http://localhost:3004/auth/login';
+const userInfoUrl = 'http://localhost:3004/auth/userInfo';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +16,6 @@ export class AuthService {
   user: UserModel;
 
   userInfo = new Subject<any>();
-  private _isLoggedIn: Observable<boolean>;
 
   constructor(
     private window: Window,
@@ -34,8 +37,8 @@ export class AuthService {
         });
   }
 
-  getUserInfo(): UserModel {
-    // if (!this.isAuthenticated) return;
+  getUserInfo(): any {
+    if (!this.isAuthenticated) return;
 
     this.http.post(userInfoUrl, { token: this.getToken })
       .subscribe(
@@ -76,7 +79,3 @@ export class AuthService {
     return this.userInfo.asObservable();
   }
 }
-
-const authKey = 'token';
-const authUrl = 'http://localhost:3004/auth/login';
-const userInfoUrl = 'http://localhost:3004/auth/userInfo';

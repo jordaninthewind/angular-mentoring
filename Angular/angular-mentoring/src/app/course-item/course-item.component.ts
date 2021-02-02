@@ -30,7 +30,7 @@ export class CourseItemComponent implements OnInit {
   private _selectTileColor() {
     if (this.item === null) return;
     
-    const date = new Date(`${this.item.date}`);
+    const date = new Date(this.item.date);
     const isInFuture = new Date(date) > new Date();
     const isNewerThanAFortnite = (new Date().getTime() - date.getTime()) < this._calculateDays(14);
 
