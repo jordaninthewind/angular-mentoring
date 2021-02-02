@@ -28,8 +28,11 @@ export class CourseItemComponent implements OnInit {
   }
 
   private _selectTileColor() {
-    const isInFuture = this.item.creationDate > new Date();
-    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < this._calculateDays(14);
+    if (this.item === null) return;
+    
+    const date = new Date(`${this.item.date}`);
+    const isInFuture = new Date(date) > new Date();
+    const isNewerThanAFortnite = (new Date().getTime() - date.getTime()) < this._calculateDays(14);
 
     if (!isInFuture && isNewerThanAFortnite) {
       this.color = 'rgb(158, 198, 71)';

@@ -4,7 +4,7 @@
 <div>
     <section class="cta-section">
         <input #filterInput type="text" placeholder="Type to search">
-        <button class="green large" (click)=onFilterClick(filterInput.value)>Search</button>
+        <button class="green large" (click)=loadCourses(filterInput.value)>Search</button>
     </section>
     <section>
         <button class="blue large right" routerLink="/courses/new">
@@ -12,13 +12,14 @@
         </button>
     </section>
     <br />
+    <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
     <app-course-item (removeCourse)="onDeleteCourseNode($event)" (updateCourse)="updateCourseNode($event)"
-        *ngFor="let course of courses | orderBy | filter: filter" [item]="course">
+        *ngFor="let course of courses" [item]="course">
     </app-course-item>
-    <mat-card *ngIf="courses.length > 0" (click)="loadMore()">
+    <mat-card *ngIf="courses?.length > 0" (click)="loadMore()">
         Load More
     </mat-card>
-    <mat-card *ngIf="courses.length === 0">
+    <mat-card *ngIf="courses?.length === 0">
         NO DATA. FEEL FREE TO ENTER A NEW COURSE.
     </mat-card>
 </div>

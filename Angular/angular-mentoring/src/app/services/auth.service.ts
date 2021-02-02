@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserModel } from '../user-model';
@@ -6,42 +7,65 @@ import { UserModel } from '../user-model';
   providedIn: 'root'
 })
 export class AuthService {
-  possibleUsers: UserModel[] = [
-    {id: 1,
-      firstName: 'Jordan',
-      lastName: 'Kline',
-      email: 'jordan@jordan.com',
-      password: 'admin',  
-    },
-  ];
-
   user: UserModel;
+  error: String;
 
-  constructor(private window: Window, private router: Router) { }
+  constructor(private window: Window, private router: Router, private http: HttpClient) { }
 
-  login(email: String, password: String): void {
-    const currentUser = this.possibleUsers.find(user => user.email == email);
-    if (!currentUser) {
-      throw new Error('This user does not exist');
-    } else if (currentUser.password != password) {
-      throw new Error('The password does not match our records for this user.');
-    } else {
-      this.window.localStorage.setItem('isAuthenticated', 'true');
-      this.router.navigateByUrl('/courses');
-    }
+  login(login: String, password: String): void {
+    this.http.post(authUrl, { login, password })
+      .subscribe(
+        data => {
+          this.window.localStorage.setItem(authKey, data[authKey]);
+          this.user = this.getUserInfo();
+          this.router.navigateByUrl('/courses');
+        },
+        err => {
+          this.error = err.error;
+        }
+      )
   }
 
   logout(): void {
     this.user = undefined;
-    this.window.localStorage.removeItem('isAuthenticated');
+    this.window.localStorage.removeItem(authKey);
+
     this.router.navigateByUrl('/login');
   }
 
   get isAuthenticated(): boolean {
-    return !!this.window.localStorage.getItem('isAuthenticated');
+    return !!this.getToken;
+  }
+
+  get getToken(): String {
+    return this.window.localStorage.getItem(authKey);
   }
 
   getUserInfo(): UserModel {
+    if (!this.isAuthenticated) return;
+
+    this.http.post(userInfoUrl, { token: this.getToken })
+      .subscribe(
+        data => {
+          const { id, login, password, name, fakeToken } = data;
+          return {
+            id,
+            firstName: name.first,
+            lastName: name.last,
+            email: login,
+            password,
+            token: fakeToken
+          }
+        },
+        err => {
+          console.log(err);
+          // this.error = err.error;
+        }
+      )
     return this.user;
   }
 }
+
+const authKey = 'token';
+const authUrl = 'http://localhost:3004/auth/login';
+const userInfoUrl = 'http://localhost:3004/auth/userInfo';

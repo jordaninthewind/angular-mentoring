@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -6,21 +6,17 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   email = '';
   password = '';
   error = '';
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {}
-
+  // Why does this work with Async/Await and an observable?
   login(): void {
-    try {
       this.authService.login(this.email, this.password);
-      this.error = '';
-    } catch(err) {
-      this.error = err.message;
-    }
+      console.log(this.authService.user); // Why can't I access these values here?
+      // How to bring error from authService?
   }
 }

@@ -9,11 +9,11 @@ import { CourseItem } from '../course-item/course-item-model';
 })
 export class NewCourseComponent implements OnInit {
   newCourse: CourseItem = {
-    creationDate: new Date(),
-    duration: 0,
-    content: "",
-    title: "",
-    topRated: false
+    date: '', 
+    length: 0,
+    description: '',
+    name: '',
+    isTopRated: false
   };
 
   @Output() newCourseSubmitted: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
