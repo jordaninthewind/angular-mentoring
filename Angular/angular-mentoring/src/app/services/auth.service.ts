@@ -1,16 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { MessageService } from '../message.service';
 import { UserModel } from '../user-model';
+
+const authKey = 'token';
+const authUrl = 'http://localhost:3004/auth/login';
+const userInfoUrl = 'http://localhost:3004/auth/userInfo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: UserModel;
-  error: String;
 
-  constructor(private window: Window, private router: Router, private http: HttpClient) { }
+  userInfo = new Subject<any>();
+
+  constructor(
+    private window: Window,
+    private router: Router,
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
 
   login(login: String, password: String): void {
     this.http.post(authUrl, { login, password })
@@ -21,7 +33,29 @@ export class AuthService {
           this.router.navigateByUrl('/courses');
         },
         err => {
-          this.error = err.error;
+          this.messageService.sendErrorMessage(err.error);
+        });
+  }
+
+  getUserInfo(): any {
+    if (!this.isAuthenticated) return;
+
+    this.http.post(userInfoUrl, { token: this.getToken })
+      .subscribe(
+        data => {
+          this.user = {
+            id: data['id'],
+            firstName: data['name']['first'],
+            lastName: data['name']['last'],
+            email: data['login'],
+            password: data['password'],
+            token: data['fakeToken']
+          };
+
+          this.userInfo.next(this.user);
+        },
+        err => {
+          this.messageService.sendErrorMessage(err.error);
         }
       )
   }
@@ -41,31 +75,7 @@ export class AuthService {
     return this.window.localStorage.getItem(authKey);
   }
 
-  getUserInfo(): UserModel {
-    if (!this.isAuthenticated) return;
-
-    this.http.post(userInfoUrl, { token: this.getToken })
-      .subscribe(
-        data => {
-          const { id, login, password, name, fakeToken } = data;
-          return {
-            id,
-            firstName: name.first,
-            lastName: name.last,
-            email: login,
-            password,
-            token: fakeToken
-          }
-        },
-        err => {
-          console.log(err);
-          // this.error = err.error;
-        }
-      )
-    return this.user;
+  getUserInfoObservable(): Observable<any> {
+    return this.userInfo.asObservable();
   }
 }
-
-const authKey = 'token';
-const authUrl = 'http://localhost:3004/auth/login';
-const userInfoUrl = 'http://localhost:3004/auth/userInfo';

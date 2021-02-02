@@ -7,13 +7,12 @@ import { CourseItem } from '../course-item/course-item-model';
   providedIn: 'root'
 })
 export class CoursesService {
-  public baseUrl = 'http://localhost:3004';
   public count: number = 10;
 
   constructor(private _http: HttpClient) {}
 
   getCourses(filter = ''): Observable<CourseItem[]> {
-    return this._http.get<CourseItem[]>(`${this.baseUrl}/courses?sort=date&count=${this.count}&textFragment=${filter}`, httpOptions);
+    return this._http.get<CourseItem[]>(`${baseUrl}/courses?sort=date&count=${this.count}&textFragment=${filter}`, httpOptions);
   }
 
   public loadMore(): void {
@@ -57,3 +56,5 @@ const httpOptions = {
     'Access-Control-Allow-Origin': '*',
   })
 }
+
+const baseUrl = 'http://localhost:3004';
