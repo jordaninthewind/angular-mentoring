@@ -47,11 +47,29 @@ export class CoursesService {
     return this.courses;
   }
 
-  totalCoursesLength(): Number {
+  get totalCoursesLength(): Number {
     return this.courses.length;
+  }
+
+  createCourse(courseInfo: CourseItem): void {
+    this.courses.push(courseInfo);
   }
 
   deleteCourse(courseToDelete: CourseItem): void {
     this.courses = this.courses.filter(i => i.id !== courseToDelete.id);
+  }
+
+  updateCourse(courseInfo: CourseItem): void {
+    const course = this.getItemById(courseInfo.id);
+
+    if (course) {
+      const keys = Object.keys(course);
+
+      keys.forEach(key => course[key] = courseInfo[key]);
+    }
+  }
+
+  getItemById(id: number): CourseItem {
+    return this.courses.find(course => course.id === id);
   }
 }

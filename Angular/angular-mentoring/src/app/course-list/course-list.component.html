@@ -1,15 +1,18 @@
+<section>
+    <app-breadcrumbs></app-breadcrumbs>
+</section>
 <div>
     <section class="cta-section">
         <input #filterInput type="text" placeholder="Type to search">
         <button class="green large" (click)=onFilterClick(filterInput.value)>Search</button>
     </section>
     <section>
-        <button class="blue large right">
+        <button class="blue large right" (click)="addNewCourse()">
             <fa-icon [icon]="faPlusSquare"></fa-icon> Add course
         </button>
     </section>
     <br />
-    <app-course-item (onDeleteCourse)="onDeleteCourseNode($event)"
+    <app-course-item (removeCourse)="onDeleteCourseNode($event)" (updateCourse)="updateCourseNode($event)"
         *ngFor="let course of courses | orderBy | filter: filter" [item]="course">
     </app-course-item>
     <mat-card *ngIf="courses.length > 0" (click)="loadMore()">

@@ -16,15 +16,15 @@ export class CourseItemComponent implements OnInit {
 
   public color: string;
 
-  constructor() { }
-
   @Input() item: CourseItem;
+  @Output() removeCourse: EventEmitter<number> = new EventEmitter<number>();
+  @Output() updateCourse: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
 
-  @Output('onDeleteCourse') onDelete: EventEmitter<number> = new EventEmitter<number>();
+  constructor() { }
 
   ngOnInit(): void {
     const isInFuture = this.item.creationDate > new Date();
-    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < 86400000 * 14;
+    const isNewerThanAFortnite = (new Date().getTime() - this.item.creationDate.getTime()) < this.calculateDays(14);
 
     if (!isInFuture && isNewerThanAFortnite) {
       this.color = 'rgb(158, 198, 71)';
@@ -33,7 +33,15 @@ export class CourseItemComponent implements OnInit {
     }
   }
 
+  public calculateDays(days: number): number {
+    return 86400000 * days;
+  }
+
   public deleteCourse(): void {
-    this.onDelete.emit(this.item.id);
+    this.removeCourse.emit(this.item.id);
+  }
+
+  public editCourse(): void {
+    this.updateCourse.emit(this.item);
   }
 }

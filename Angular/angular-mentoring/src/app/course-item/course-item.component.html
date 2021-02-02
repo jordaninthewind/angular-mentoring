@@ -4,7 +4,8 @@
             <mat-card-title>{{item.title | uppercase}}
                 <fa-icon *ngIf="item.topRated" [icon]="faStar" style="color:gold;"></fa-icon>
                 <mat-card-subtitle class="right">
-                    <fa-icon [icon]="faClock"></fa-icon> {{item.duration | duration }} <fa-icon [icon]="faCalendar"></fa-icon>
+                    <fa-icon [icon]="faClock"></fa-icon> {{item.duration | duration }} <fa-icon [icon]="faCalendar">
+                    </fa-icon>
                     {{item.creationDate | date}}
                 </mat-card-subtitle>
             </mat-card-title>
@@ -15,7 +16,7 @@
                 <button class="small blue right" (click)="deleteCourse()">
                     <fa-icon [icon]="faTrashAlt"></fa-icon> Delete
                 </button>
-                <button class="small blue right">
+                <button class="small blue right" (click)="editCourse()">
                     <fa-icon [icon]="faEdit"></fa-icon> Edit
                 </button>
             </span>

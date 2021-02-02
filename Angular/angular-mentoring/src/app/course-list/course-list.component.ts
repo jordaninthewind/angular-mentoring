@@ -18,7 +18,6 @@ export class CourseListComponent implements OnInit, OnChanges {
   constructor(private coursesService: CoursesService) { }
 
   ngOnInit(): void {
-    console.log('on init');
     this.courses = this.coursesService.getCourses();
   }
 
@@ -26,14 +25,8 @@ export class CourseListComponent implements OnInit, OnChanges {
     console.log('on changes');
   }
 
-  // Filter logic
-
-  // Add Course Click Handler to Open Form Modal
-
-  // Load more button
-
   get totalCourseLength(): Number {
-    return this.coursesService.totalCoursesLength();
+    return this.coursesService.totalCoursesLength;
   };
 
   public loadMore(): void {
@@ -45,6 +38,17 @@ export class CourseListComponent implements OnInit, OnChanges {
   }
 
   public onDeleteCourseNode(id: number): void {
-    this.courses = this.courses.filter(course => course.id !== id);
+    if (window.confirm('Are you sure you want to delete this course?')) {
+      this.courses = this.courses.filter(course => course.id !== id);
+    }
+  }
+
+  public updateCourseNode(item: CourseItem) {
+    this.coursesService.updateCourse(item);
+  }
+
+  public addNewCourse(): void {
+    // toggle modal
+    console.log('added new course');
   }
 }

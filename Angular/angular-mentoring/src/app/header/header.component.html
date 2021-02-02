@@ -4,12 +4,12 @@
             <!-- ICON -->
             <span>VIDEO COURSE</span>
         </span>
-        <span class="nav-links">
-            <a href="/">
+        <span *ngIf="isAuthenticated !== false" class="nav-links">
+            <a (click)="logout()">
                 <fa-icon [icon]="faUser"></fa-icon>
                 User login
             </a>
-            <a href="/">
+            <a [routerLink]="['/login']" (click)="logout()">
                 <fa-icon [icon]="faWindowClose"></fa-icon>
                 Log off
             </a>

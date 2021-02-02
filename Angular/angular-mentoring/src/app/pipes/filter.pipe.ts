@@ -6,15 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(values: any[], filter: string): any {
-    if (filter != undefined) {
-      filter = filter.toLowerCase();
-      values = values.filter(value => {
-        const { title, content } = value;
-        return title.toLowerCase().includes(filter) || content.toLowerCase().includes(filter);
-      });
+    const emptyFilter = (filter ?? '').length === 0;
+
+    if (emptyFilter) {
+      return values;
     }
+
+    filter = filter.toLowerCase();
+    values = values.filter(({ title, content }) => {
+      return title.toLowerCase().includes(filter) || content.toLowerCase().includes(filter);
+    });
 
     return values;
   }
-
 }
