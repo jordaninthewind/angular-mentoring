@@ -27,6 +27,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -59,6 +63,8 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     { 
