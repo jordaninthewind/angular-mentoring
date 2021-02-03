@@ -31,6 +31,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { coursesReducer } from './state/courses/courses.reducer';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ import { environment } from '../environments/environment';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot({ courses: coursesReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
