@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -65,6 +65,7 @@ import { authReducer } from './state/auth/auth.reducer';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ courses: coursesReducer, user: authReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
