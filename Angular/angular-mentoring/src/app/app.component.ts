@@ -7,10 +7,7 @@ import { ActivatedRoute, Router, RouterEvent } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {
-    // this.router.events.subscribe((event: RouterEvent) => {
-    //   // console.log(event);
-    // });
-  }
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
   title = 'angular-mentoring';
 }

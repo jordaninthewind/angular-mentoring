@@ -7,7 +7,7 @@
         <span *ngIf="user" class="nav-links">
             <fa-icon [icon]="faUser"></fa-icon>
             <span>
-                Welcome, {{user.firstName}}!
+                Welcome, {{user$.firstName | async }}!
             </span>
             <a [routerLink]="['/login']" (click)="logout()">
                 <fa-icon [icon]="faWindowClose"></fa-icon>
