@@ -1,24 +1,53 @@
 <section>
-    <p>
-        <label>Title:</label>
-        <input type="text" [(ngModel)]="newCourse.title" />
-    </p>
-    <p>
-        <label>Description:</label>
-        <textarea [(ngModel)]="newCourse.content"></textarea>
-    </p>
-    <p>
-        <label>Date:</label>
-        <input type="date" [(ngModel)]="newCourse.creationDate" />
-    </p>
-    <p>
-        <label>Duration: {{newCourse.duration | duration}}</label>
-        <input type="number" [(ngModel)]="newCourse.duration" />
-    </p>
-    <p>
-        <label>Authors:</label>
-        <input type="text" [(ngModel)]="newCourse.authors" />
-    </p>
-    <button class="blue large" (click)="addCourse()">Save</button>
-    <button class="green large" (click)="closeDialog()">Cancel</button>
+    <form [formGroup]="form" #formDir="ngForm" (ngSubmit)="addCourse()">
+        <p [class.has-error]="title.invalid && title.touched">
+            <label>Title:
+                <mat-error *ngIf="title.errors?.required && title.touched">Title is required.</mat-error>
+                <mat-error *ngIf="title.errors?.maxlength">Title can't exceed 50 characters.</mat-error>
+            </label>
+            <input type="text" formControlName="title" />
+        </p>
+        <p [class.has-error]="content.invalid && content.touched">
+            <label>Description:
+                <mat-error *ngIf="content.errors?.required && content.touched">Description is required.</mat-error>
+                <mat-error *ngIf="content.errors?.maxlength">Description can't exceed 500 characters.</mat-error>
+            </label>
+            <textarea formControlName="content"></textarea>
+        </p>
+        <p [class.has-error]="creationDate.invalid && creationDate.touched">
+            <label>Date:
+                <mat-error *ngIf="creationDate.errors?.required && creationDate.touched">Date is required.</mat-error>
+            </label>
+            <input type="date" formControlName="creationDate" />
+        </p>
+        <p [class.has-error]="duration.invalid && duration.touched || form.errors?.invalidNumber">
+            <label>Duration: {{ filmDuration | duration}}
+                <mat-error *ngIf="duration.errors?.required">Duration must be higher than 0.</mat-error>
+            </label>
+            <input type="number" formControlName="duration" />
+        </p>
+        <mat-form-field [class.has-error]="authors.invalid && authors.touched">
+            <mat-error *ngIf="authors.errors?.minlength">At least one author must be selected.</mat-error>
+            <mat-label>Authors:</mat-label>
+            <mat-chip-list #chipList>
+                <mat-chip 
+                    *ngFor="let author of courseAuthors"
+                    (removed)="removeAuthor(author)">
+                    {{ author }}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input
+                    placeholder="Add an author..."
+                    #authorInput
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+                    formControlName="authors"
+                    (matChipInputTokenEnd)="add($event)"
+                >
+            </mat-chip-list>
+        </mat-form-field>
+        <br />
+        <button class="blue large" [disabled]="!form.valid" type="submit">Save</button>
+        <button class="green large" (click)="closeDialog()">Cancel</button>
+    </form>
 </section>
