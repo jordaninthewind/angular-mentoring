@@ -13,3 +13,13 @@ input {
 textarea {
   height: 15vh;
 }
+
+.has-error { 
+  input, textarea {
+    border: 2px solid red;
+  }
+}
+
+button[type="submit"]:disabled {
+  background: #dddddd;
+}
