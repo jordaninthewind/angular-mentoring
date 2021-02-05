@@ -7,6 +7,9 @@ import { NewCourseComponent } from '../new-course/new-course.component';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { selectCourses } from '../state/courses/courses.selectors';
+import { retrievedCoursesList } from '../state/courses/courses.actions';
 
 @Component({
   selector: 'app-course-list',
@@ -24,17 +27,26 @@ export class CourseListComponent implements OnInit {
 
   public courses: CourseItem[];
 
+  public courses$ = this.store.pipe(select(selectCourses));
+
   public params: string;
 
   public loading: boolean = false;
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog, private route: ActivatedRoute) { }
+  constructor(
+    private coursesService: CoursesService, 
+    private store: Store, 
+    public dialog: MatDialog, 
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.loadCourses();
+
     this.searchFilterSubject
       .pipe(debounceTime(250))
       .subscribe((val) => this.loadCourses(val));
+
     this.params = this.route.snapshot.params.id;
 
     if (this.params) this.openNewCourseModal(this.params);
@@ -42,10 +54,7 @@ export class CourseListComponent implements OnInit {
 
   public loadCourses(filter: string = ''): void {
     this.loading = true;
-    this.coursesService.getCourses(filter).subscribe(response => {
-      this.courses = response;
-      this.loading = false;
-    });
+    this.coursesService.getCourses(filter).subscribe((course) => this.store.dispatch(retrievedCoursesList( { CourseItem: course })));
   }
 
   public filterChange(filter: string): void {

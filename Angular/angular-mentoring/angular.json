@@ -129,6 +129,7 @@
   },
   "defaultProject": "angular-mentoring",
   "cli": {
-    "analytics": "f1274876-4dd7-4bc2-bb26-ae939aedf88e"
+    "analytics": "f1274876-4dd7-4bc2-bb26-ae939aedf88e",
+    "defaultCollection": "@ngrx/schematics"
   }
 }

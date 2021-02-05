@@ -2,7 +2,8 @@ import { Component, OnChanges } from '@angular/core';
 import { faUser, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { UserModel } from '../user-model';
+import { selectUserAuth } from '../state/auth/auth.selectors';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -14,17 +15,13 @@ export class HeaderComponent {
   faWindowClose = faWindowClose;
 
   authSubscription: Subscription;
-  user: UserModel;
+  
+  user$ = this.store.pipe(select(selectUserAuth));
 
-  constructor(private authService: AuthService) {
-    this.authSubscription = this.authService.getUserInfoObservable().subscribe(
-      userResponse => {
-        this.user = userResponse;
-      });
-  }
+  constructor(private authService: AuthService, private store: Store) {}
 
   logout(): void {
-    this.authService.logout();  
+    this.authService.logout();
   }
 
   ngOnDestroy() {
