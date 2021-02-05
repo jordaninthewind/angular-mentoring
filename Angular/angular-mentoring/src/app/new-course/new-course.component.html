@@ -20,7 +20,7 @@
             </label>
             <input type="date" formControlName="creationDate" />
         </p>
-        <p [class.has-error]="duration.invalid && duration.touched">
+        <p [class.has-error]="duration.invalid && duration.touched || form.errors?.invalidNumber">
             <label>Duration: {{ filmDuration | duration}}
                 <mat-error *ngIf="duration.errors?.required">Duration must be higher than 0.</mat-error>
             </label>

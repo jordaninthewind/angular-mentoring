@@ -7,6 +7,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocomplete } from '@angular/material/autocomplete';
+import { customNumberValidator } from '../directives/custom-number-validator.directive';
 
 @Component({
   selector: 'app-new-course',
@@ -50,10 +51,10 @@ export class NewCourseComponent implements OnInit {
       duration: new FormControl(0, Validators.required),
       authors: new FormControl(
         this.courseAuthors, [
-          Validators.required, 
-          Validators.minLength(1)
-        ]),
-    });
+        Validators.required,
+        Validators.minLength(1)
+      ]),
+    }, { validators: customNumberValidator });
 
     this.filteredAuthors = this.authors.valueChanges.pipe(
       map((author: string | null) => author ? this._filter(author) : this.allAuthors.slice())
@@ -82,7 +83,7 @@ export class NewCourseComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    
+
     this.courseAuthors.push(value.trim());
 
     input.value = '';

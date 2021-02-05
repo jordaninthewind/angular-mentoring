@@ -36,6 +36,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { coursesReducer } from './state/courses/courses.reducer';
 import { authReducer } from './state/auth/auth.reducer';
+import { CustomNumberValidatorDirective } from './directives/custom-number-validator.directive';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { authReducer } from './state/auth/auth.reducer';
     NewCourseComponent,
     NotFoundComponent,
     LoadingOverlayComponent,
+    CustomNumberValidatorDirective,
   ],
   imports: [
     AppRoutingModule,
